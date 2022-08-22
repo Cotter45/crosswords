@@ -7,7 +7,7 @@ function Game({ gameType }: { gameType: string }) {
 
   const [words, setWords] = useState<string[]>();
   const [definitions, setDefinitions] = useState<string[]>();
-  const [reset, setReset] = useState(false);
+  const [reset] = useState(false);
 
   return (
     <>
