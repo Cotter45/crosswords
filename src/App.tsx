@@ -1,25 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import Game from './components/game';
+import Nav from './components/nav';
+import Splash from './components/splash';
 
 function App() {
+  const [gameOn, setGameOn] = useState(false);
+  const [gameType, setGameType] = useState('crosswords-10');
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Nav gameOn={gameOn} setGameOn={setGameOn} />
+      <main className="main">
+        {gameOn ? (
+            <Game gameType={gameType} />
+          ) : (
+            <Splash setGameType={setGameType} setGameOn={setGameOn} />
+          )}
+      </main>
+    </>
   );
 }
 
