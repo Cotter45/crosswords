@@ -1,18 +1,36 @@
-import { useEffect, useState } from 'react';
-import { createTenBoard } from '../../util/setup';
+import { useEffect, useLayoutEffect, useState } from 'react';
+import { createTenBoard } from '../../util/createTenBoard';
 
-function Board({ setDefinitions, setWords, reset }: { gameType: string, words: string[] | undefined, setWords: (words: string[]) => void, reset: boolean, setDefinitions: (definitions: string[]) => void }) {
+function Board({ setDefinitions, setWords, reset, setWinner }: { gameType: string, words: string[] | undefined, setWords: (words: string[]) => void, reset: boolean, setDefinitions: (definitions: string[]) => void, setWinner: (winner: boolean) => void }) {
 
   const [grid, setGrid] = useState<string[][]>();
   const [indexes, setIndexes] = useState<any>();
+  const [correct, setCorrect] = useState<number>(0);
+  const [letterCount, setLetterCount] = useState<number>(0);
 
-  useEffect(() => {
-    const { board, definitions, words, indexes } = createTenBoard();
+  useLayoutEffect(() => {
+    const { board, definitions, words, indexes, letterCount } = createTenBoard();
     setWords(words);
     setIndexes(indexes);
     setGrid(board);
     setDefinitions(definitions);
+    setLetterCount(letterCount);
   }, [setWords, reset, setDefinitions]);
+
+  useEffect(() => {
+    if (!indexes) return;
+    if (correct !== letterCount) return;
+    setWinner(true);
+  } , [correct, indexes, letterCount, setWinner]);
+
+  useEffect(() => {
+    const inputs = document.querySelectorAll('.board-cell');
+    for (let i = 0; i < inputs.length; i++) {
+      inputs[i].innerHTML = '';
+      inputs[i].classList.remove('correct');
+      inputs[i].classList.remove('incorrect');
+    }
+  }, [reset])
 
   return (
     <div className="ten-board">
@@ -27,7 +45,9 @@ function Board({ setDefinitions, setWords, reset }: { gameType: string, words: s
                 autoComplete="off"
                 onKeyDown={(e: any) => {
                   if (e.key === 'Tab') return;
+                  if (e.currentTarget.classList.contains('correct')) return;
                   if (e.key === cell) {
+                    setCorrect((state) => state + 1);
                     e.currentTarget.classList.add('correct');
                     e.currentTarget.classList.remove('incorrect');
                   } else {
