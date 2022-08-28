@@ -1,15 +1,15 @@
-import { useEffect, useLayoutEffect, useState } from 'react';
-import { createTenBoard } from '../../util/createTenBoard';
+import { useEffect, useState } from 'react';
+import { createTenBoard } from '../../util/createBoard';
 
-function Board({ setDefinitions, setWords, reset, setWinner }: { gameType: string, words: string[] | undefined, setWords: (words: string[]) => void, reset: boolean, setDefinitions: (definitions: string[]) => void, setWinner: (winner: boolean) => void }) {
+function TenBoard({ setDefinitions, setWords, reset, setWinner }: { gameType: string, words: string[] | undefined, setWords: (words: string[]) => void, reset: boolean, setDefinitions: (definitions: string[]) => void, setWinner: (winner: boolean) => void }) {
 
   const [grid, setGrid] = useState<string[][]>();
   const [indexes, setIndexes] = useState<any>();
   const [correct, setCorrect] = useState<number>(0);
   const [letterCount, setLetterCount] = useState<number>(0);
 
-  useLayoutEffect(() => {
-    const { board, definitions, words, indexes, letterCount } = createTenBoard();
+  useEffect(() => {
+    const { board, definitions, words, indexes, letterCount } = createTenBoard(10);
     setWords(words);
     setIndexes(indexes);
     setGrid(board);
@@ -70,4 +70,4 @@ function Board({ setDefinitions, setWords, reset, setWinner }: { gameType: strin
   );
 }
 
-export default Board;
+export default TenBoard;

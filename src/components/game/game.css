@@ -9,6 +9,28 @@
   margin-top: 2rem;
 }
 
+.fifteen-board {
+  display: grid;
+  grid-template-columns: repeat(15, 1fr);
+  grid-gap: 0.5px;
+  width: 90vw;
+  height: 60vh;
+  min-width: 50vw;
+  min-height: 50vh;
+  margin-top: 2rem;
+}
+
+.twenty-board {
+  display: grid;
+  grid-template-columns: repeat(20, 1fr);
+  grid-gap: 0.5px;
+  width: 90vw;
+  height: 60vh;
+  min-width: 50vw;
+  min-height: 50vh;
+  margin-top: 2rem;
+}
+
 .definitions {
   display: flex;
   flex-direction: column;
@@ -49,6 +71,18 @@
 .ten-board-row {
   display: grid;
   grid-template-rows: repeat(10, 1fr);
+  grid-gap: 0.5px;
+}
+
+.fifteen-board-row {
+  display: grid;
+  grid-template-rows: repeat(15, 1fr);
+  grid-gap: 0.5px;
+}
+
+.twenty-board-row {
+  display: grid;
+  grid-template-rows: repeat(20, 1fr);
   grid-gap: 0.5px;
 }
 

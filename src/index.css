@@ -23,6 +23,7 @@ ol > li {
   padding: 0 1rem;
   gap: 1rem;
   align-items: center;
+  justify-content: flex-start;
   position: relative;
   /* overflow-y: auto; */
 }

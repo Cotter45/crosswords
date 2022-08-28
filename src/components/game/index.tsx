@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import TenBoard from './tenBoard';
 import "./game.css";
+import FifteenBoard from './fifteenBoard';
+import TwentyBoard from './twentyBoard';
 
 
 function Game({ gameType }: { gameType: string }) {
@@ -13,6 +15,8 @@ function Game({ gameType }: { gameType: string }) {
   return (
     <>
       {gameType === 'crosswords-10' && <TenBoard gameType={gameType} words={words} setWords={setWords} reset={reset} setDefinitions={setDefinitions} setWinner={setWinner} />}
+      {gameType === 'crosswords-15' && <FifteenBoard gameType={gameType} words={words} setWords={setWords} reset={reset} setDefinitions={setDefinitions} setWinner={setWinner} />}
+      {gameType === 'crosswords-20' && <TwentyBoard gameType={gameType} words={words} setWords={setWords} reset={reset} setDefinitions={setDefinitions} setWinner={setWinner} />}
       <ol className="definitions">
         <div className="controls">
           <h3>Clues</h3>

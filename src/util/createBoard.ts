@@ -1,9 +1,9 @@
 import { getRandomWords, getRandomWord } from "./setup";
 
-export function createTenBoard(): { board: string[][], definitions: string[], words: string[], indexes: any, letterCount: number } {
-  let { randomWords, randomDefinitions: definitions } = getRandomWords(10);
+export function createTenBoard( count: number): { board: string[][], definitions: string[], words: string[], indexes: any, letterCount: number } {
+  let { randomWords, randomDefinitions: definitions } = getRandomWords(count);
   const words = randomWords;
-  let board = Array.from({ length: 10 }, () => Array.from({ length: 10 }, () => ''));
+  let board = Array.from({ length: count }, () => Array.from({ length: count }, () => ''));
   const indexes: any = {};
     
   let i = 0;
@@ -11,11 +11,11 @@ export function createTenBoard(): { board: string[][], definitions: string[], wo
   let letterCount = 0;
   let attempts = 0;
 
-  while (wordsPlaced < 10) {
+  while (wordsPlaced < count) {
     let word = words[i];
     const length = word.length;
-    const row = Math.floor(Math.random() * (10 - length));
-    const col = Math.floor(Math.random() * (10 - length));
+    const row = Math.floor(Math.random() * (count - length));
+    const col = Math.floor(Math.random() * (count - length));
     const direction = Math.random() > 0.5 ? 'horizontal' : 'vertical';
 
     let canPlace = true;
