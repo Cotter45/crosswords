@@ -28,7 +28,13 @@ function Game({ gameType }: { gameType: string }) {
       </ol>
       {winner && (
         <div className="overlay">
-          <h1>You Win!</h1>
+          <div className="overlay-content">
+            <h1>Congratulations, You Win!</h1>
+            <button className="controls-button" onClick={() => {
+              setReset(!reset);
+              setWinner(false);
+            }}>New Board</button>
+          </div>
           <div className="pyro">
             <div className="before"></div>
             <div className="after"></div>

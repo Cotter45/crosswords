@@ -51,15 +51,31 @@ export function createTenBoard( count: number): { board: string[][], definitions
 
     if (direction === 'horizontal') {
       for (let j = 0; j < length; j++) {
-        if (j === 0) indexes[`${row}-${col + j}`] = wordsPlaced + 1;
-        if (board[row][col + j] === '') letterCount++;
-        board[row][col + j] = word[j];
+        if (j === 0) {
+          if (indexes[`${row}-${col + j}`]) {
+            indexes[`${row}-${col + j}`] = `${indexes[`${row}-${col + j}`]} & ${wordsPlaced + 1}`;
+          } else {
+            indexes[`${row}-${col + j}`] = wordsPlaced + 1
+          }
+        };
+        if (board[row][col + j] === '') {
+          letterCount++;
+          board[row][col + j] = word[j];
+        }
       }
     } else {
       for (let j = 0; j < length; j++) {
-        if (j === 0) indexes[`${row + j}-${col}`] = wordsPlaced + 1;
-        if (board[row + j][col] === '') letterCount++;
-        board[row + j][col] = word[j];
+        if (j === 0) {
+          if (indexes[`${row + j}-${col}`]) {
+            indexes[`${row + j}-${col}`] = `${indexes[`${row + j}-${col}`]} & ${wordsPlaced + 1}`;
+          } else {
+            indexes[`${row + j}-${col}`] = wordsPlaced + 1;
+          }
+        }
+        if (board[row + j][col] === '') {
+          letterCount++;
+          board[row + j][col] = word[j];
+        }
       }
     }
     wordsPlaced++;

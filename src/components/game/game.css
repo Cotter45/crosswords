@@ -157,16 +157,29 @@
 .overlay {
   margin: 0;
   padding: 0;
-  background: #000;
-  opacity: 0.5;
+  background: rgba(0, 0, 0, 0.5);
   overflow: hidden;
   height: 100%;
   width: 100%;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.overlay-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  color: #fff;
+  z-index: 2;
 }
 
 .pyro>.before,

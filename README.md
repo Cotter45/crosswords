@@ -19,9 +19,5 @@ React Crosswords is a crossword game built with React. It pulls from a JSON dict
 ---
 
 - Add a timer to the game
-- Add a banner and new game button to the winner fireworks
 - Add the about page 
 - Add links to start the games in the menu 
-- Bug fixes
-  - Sometimes the board is not cleared when selecting new game after some words are in 
-  - Sometimes the board doesn't register a "number" for where the word starts

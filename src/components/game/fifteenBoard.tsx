@@ -36,9 +36,9 @@ function FifteenBoard({
   }, [correct, indexes, letterCount, setWinner]);
 
   useEffect(() => {
-    const inputs = document.querySelectorAll(".board-cell");
+    const inputs: any = document.querySelectorAll(".board-cell");
     for (let i = 0; i < inputs.length; i++) {
-      inputs[i].innerHTML = "";
+      inputs[i].value = "";
       inputs[i].classList.remove("correct");
       inputs[i].classList.remove("incorrect");
     }
